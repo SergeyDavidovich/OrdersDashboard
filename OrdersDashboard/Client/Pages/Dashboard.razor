@@ -1,0 +1,127 @@
+﻿@page "/dashboard"
+
+@using OrdersDashboard.Client.NorthwindServices
+
+@using Syncfusion.Blazor.Charts
+
+
+@inject ProductsService service
+<p>@ErrorMessage</p>
+<div class="wrapper">
+    <div class="cards">
+        <div class="item card">Card 1</div>
+        <div class="item card">Card 2</div>
+        <div class="item card">Card 3</div>
+        <div class="item card">Card 4</div>
+    </div>
+    <div class="pies">
+        <div class="item pie">Pie 1</div>
+        <div class="item pie">Pie 2</div>
+        <div class="item pie">Pie 3</div>
+        <div class="item pie">Pie 4</div>
+    </div>
+    <div class="bars">
+        <div class="item bar">Bar 1</div>
+        <div class="item bar">Bar 2</div>
+    </div>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0 !Important;
+        /*padding-left:0!important;
+        padding-right:0!important;*/
+        font-family: sans-serif;
+        font-size: 16px;
+    }
+
+    .wrapper {
+        display: grid;
+        padding: 6px;
+        margin: 0px;
+        grid-gap: 6px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 6px;
+    }
+
+    .pies {
+        display: grid;
+        grid-gap: 6px;
+    }
+
+    .bars {
+        display: grid;
+        grid-gap: 6px;
+    }
+
+    .item {
+        padding: 6px;
+        color: white;
+        border-radius: 6px;
+    }
+
+    .card {
+        background-color: rgba(255, 0, 0, 0.5);
+        height: 120px;
+    }
+
+    .pie {
+        background-color: rgba(0, 255, 0, 0.5);
+        height: 160px;
+    }
+
+    .bar {
+        background-color: rgba(0, 0, 255, .5);
+        height: 140px;
+    }
+
+    @@media screen and (min-width: 640px) {
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 2px;
+        }
+    }
+
+    @@media screen and (min-width: 640px) {
+        .pies {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 2px;
+        }
+    }
+
+    @@media screen and (min-width: 640px) {
+        .bars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 2px;
+        }
+    }
+</style>
+
+@code {
+    #region
+
+    string ErrorMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+#if DEBUG
+        await Task.Delay(10000);
+#endif
+
+        var productsResponce = await service.GetProductsAsync();
+        var products = productsResponce.Item1;
+        var status = productsResponce.Item2;
+
+        ErrorMessage = status.ToString();
+    }
+
+    #endregion
+}
