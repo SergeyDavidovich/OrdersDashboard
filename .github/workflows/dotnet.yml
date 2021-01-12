@@ -26,7 +26,7 @@ jobs:
      # run: dotnet publish src/Meziantou.Moneiz/Meziantou.Moneiz.csproj --configuration Release
     
     # changes the base-tag in index.html from '/' to 'Blazor-PWA-5-Along' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to OrdersDashboard
+    - name: Change base-tag in index.html from / to OrdersDashboard.Client
       run: sed -i 's/<base href="\/" \/>/<base href="\/OrdersDashboard\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when a file is not found
