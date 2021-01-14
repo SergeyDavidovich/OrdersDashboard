@@ -41,8 +41,7 @@ namespace OrdersDashboard.Client.NorthwindServices
 
             return products;
         }
-
-        public async Task<(List<Product>, int)> GetProductsAsync()
+        public async Task<(List<Product> Data, int StatusCode)> GetProductsAsync()
         {
             int statusCode;
             request = new HttpRequestMessage()
