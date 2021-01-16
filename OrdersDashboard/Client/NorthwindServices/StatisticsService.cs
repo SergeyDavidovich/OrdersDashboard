@@ -13,7 +13,8 @@ namespace OrdersDashboard.Client.NorthwindServices
 {
     public class StatisticsService
     {
-        private string address = "https://northwind.now.sh/api/orders";
+        private string ordersAddress = "https://northwind.now.sh/api/orders";
+        private string productsAddress = "https://northwind.now.sh/api/products";
 
         HttpClient _httpClient;
         HttpRequestMessage request;
@@ -29,7 +30,7 @@ namespace OrdersDashboard.Client.NorthwindServices
             int statusCode;
             request = new HttpRequestMessage()
             {
-                RequestUri = new Uri(address),
+                RequestUri = new Uri(ordersAddress),
                 Method = HttpMethod.Get
             };
             request.Headers.Add("mode", "no-cors");
@@ -68,15 +69,42 @@ namespace OrdersDashboard.Client.NorthwindServices
 
             return (ordersByCountries, statusCode);
         }
-    }
+        //    public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
+        //    {
+        //        int statusCode;
+        //        request = new HttpRequestMessage()
+        //        {
+        //            RequestUri = new Uri(ordersAddress),
+        //            Method = HttpMethod.Get
+        //        };
+        //        request.Headers.Add("mode", "no-cors");
 
-    public class OrdersByCountry
-    {
-        public string CountryName { set; get; }
-        public int OrdersCount { set; get; }
+        //        //    var groupedOrderDetail = _context.OrderDetails.GroupBy(od => od.Product.Category.CategoryName);
+
+        //        //    var salesByCategories = await groupedOrderDetail.Select(orderDetailGroup => new SalesByCategory
+        //        //    {
+        //        //        CategoryName = orderDetailGroup.Key,
+        //        //        SalesSum = orderDetailGroup.Sum(orderDetail => orderDetail.Quantity * orderDetail.UnitPrice)
+        //        //    }).OrderByDescending(salesByCategory => salesByCategory.SalesSum).ToListAsync();
+
+        //        return salesByCategories;
+        //    }
+
+        //}
+
     }
+        public class OrdersByCountry
+        {
+            public string CountryName { set; get; }
+            public int OrdersCount { set; get; }
+        }
+        public class SalesByCategory
+        {
+
+        }
 }
 
+//order
 //{
 //    "id": 10271,
 //    "customerId": "SPLIR",
@@ -103,3 +131,36 @@ namespace OrdersDashboard.Client.NorthwindServices
 //      }
 //    ]
 //  }
+
+//product
+//{
+//    "id": 4,
+//    "supplierId": 2,
+//    "categoryId": 3,
+//    "quantityPerUnit": "48 - 6 oz jars",
+//    "unitPrice": 22,
+//    "unitsInStock": 53,
+//    "unitsOnOrder": 0,
+//    "reorderLevel": 0,
+//    "discontinued": true,
+//    "name": "Chef Anton's Cajun Seasoning",
+//    "supplier": {
+//        "id": 2,
+//      "companyName": "New Orleans Cajun Delights",
+//      "contactName": "Shelley Burke",
+//      "contactTitle": "Order Administrator",
+//      "address": {
+//            "street": "P.O. Box 78934",
+//        "city": "New Orleans",
+//        "region": "LA",
+//        "postalCode": 70117,
+//        "country": "USA",
+//        "phone": "(100) 555-4822"
+//      }
+//    },
+//    "category": {
+//        "id": 3,
+//      "description": "Desserts candies and sweet breads",
+//      "name": "Confections"
+//    }
+//},
