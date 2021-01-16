@@ -20,6 +20,7 @@ namespace OrdersDashboard.Client.NorthwindServices
         HttpRequestMessage request;
         HttpResponseMessage response;
         List<OrdersByCountry> ordersByCountries;
+        List<SalesByCountry> salesByCountries;
         List<Order> orders;
         public StatisticsService(HttpClient httpClient)
         {
@@ -69,6 +70,45 @@ namespace OrdersDashboard.Client.NorthwindServices
 
             return (ordersByCountries, statusCode);
         }
+
+        public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountriesAsync()
+        {
+            int statusCode;
+            request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(ordersAddress),
+                Method = HttpMethod.Get
+            };
+            request.Headers.Add("mode", "no-cors");
+            try
+            {
+                response = await _httpClient.SendAsync(request);
+                string json = await response.Content.ReadAsStringAsync();
+                orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
+                var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
+                statusCode = 200;
+
+                salesByCountries = groupedOrders.Select(groupedOrders => new SalesByCountry()
+                {
+                    CountryName = groupedOrders.Key,
+                    CountrySum = groupedOrders.Sum(g => g.Details.Sum(g => g.UnitPrice * g.Quantity))
+                }).OrderByDescending(salesBycountries => salesBycountries.CountrySum).Take(10).ToList();
+
+            }
+            catch (NotSupportedException)
+            {
+                salesByCountries = null;
+                statusCode = 500;
+            }
+
+            catch (HttpRequestException)
+            {
+                salesByCountries = null;
+                statusCode = 500;
+            }
+            return (salesByCountries, statusCode);
+        }
+
         //    public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
         //    {
         //        int statusCode;
@@ -93,15 +133,20 @@ namespace OrdersDashboard.Client.NorthwindServices
         //}
 
     }
-        public class OrdersByCountry
-        {
-            public string CountryName { set; get; }
-            public int OrdersCount { set; get; }
-        }
-        public class SalesByCategory
-        {
+    public class OrdersByCountry
+    {
+        public string CountryName { set; get; }
+        public int OrdersCount { set; get; }
+    }
+    public class SalesByCountry
+    {
+        public string CountryName { get; set; }
+        public double CountrySum { get; set; }
+    }
+    public class SalesByCategory
+    {
 
-        }
+    }
 }
 
 //order

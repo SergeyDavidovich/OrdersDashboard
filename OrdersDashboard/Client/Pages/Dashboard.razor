@@ -20,7 +20,21 @@
         <div class="item pie">
             <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount">
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" >
+                        <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
+                            <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
+                        </AccumulationDataLabelSettings>
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+            </SfAccumulationChart>
+        </div>
+        <div class="item pie">
+            <SfAccumulationChart Title="SALES BY COUNTRIES">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum">
+                        <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
+                            <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
+                        </AccumulationDataLabelSettings>
                     </AccumulationChartSeries>
                 </AccumulationChartSeriesCollection>
             </SfAccumulationChart>
@@ -33,27 +47,27 @@
                 </AccumulationChartSeriesCollection>
             </SfAccumulationChart>
         </div>
-        <div class="item pie">
-            <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
-                <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount">
-                    </AccumulationChartSeries>
-                </AccumulationChartSeriesCollection>
-            </SfAccumulationChart>
+    </div>
+    @*<div class="bars">
+        <div class="item bar">
+            <SfChart Width="100%" Height="200px">
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
         </div>
-        @*<div class="item pie">
-            <SfAccumulationChart Title="ORDERS BY COUNTRIES">
-                <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount">
-                    </AccumulationChartSeries>
-                </AccumulationChartSeriesCollection>
-            </SfAccumulationChart>
-        </div>*@
-    </div>
-    <div class="bars">
-        <div class="item bar">Bar 1</div>
-        <div class="item bar">Bar 2</div>
-    </div>
+        <div class="item bar">
+            <SfChart Width="100%" Height="200px">
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
+        </div>
+    </div>*@
 </div>
 
 <style>
@@ -140,6 +154,7 @@
     #region
 
     public List<OrdersByCountry> OrdersByCountries = new List<OrdersByCountry>();
+    public List<SalesByCountry> SalesByCountries = new List<SalesByCountry>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -150,6 +165,9 @@
         var ordersByCountriesResponce = await statisticService.GetOrdersByCountriesAsync();
 
         OrdersByCountries = ordersByCountriesResponce.Data;
+
+        var salesByCountries = await statisticService.GetSalesByCountriesAsync();
+        SalesByCountries = salesByCountries.Data;
     }
 
     #endregion
