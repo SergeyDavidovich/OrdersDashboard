@@ -2,6 +2,7 @@
 
 @using OrdersDashboard.Client.NorthwindServices
 @using OrdersDashboard.Shared.Model
+@using OrdersDashboard.Shared.DTO
 
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Grids
@@ -20,7 +21,7 @@
         <div class="item pie">
             <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" >
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
                         <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
                             <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
                         </AccumulationDataLabelSettings>
@@ -31,7 +32,7 @@
         <div class="item pie">
             <SfAccumulationChart Title="SALES BY COUNTRIES">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum">
+                    <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" Name="Sales" Explode="true">
                         <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
                             <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
                         </AccumulationDataLabelSettings>
@@ -42,7 +43,7 @@
         <div class="item pie">
             <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount">
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
                     </AccumulationChartSeries>
                 </AccumulationChartSeriesCollection>
             </SfAccumulationChart>

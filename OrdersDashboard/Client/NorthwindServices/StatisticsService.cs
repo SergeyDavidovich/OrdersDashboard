@@ -8,6 +8,7 @@ using OrdersDashboard.Shared.Model;
 using System.IO;
 
 using System.Net.Http.Json;
+using OrdersDashboard.Shared.DTO;
 
 namespace OrdersDashboard.Client.NorthwindServices
 {
@@ -15,12 +16,15 @@ namespace OrdersDashboard.Client.NorthwindServices
     {
         private string ordersAddress = "https://northwind.now.sh/api/orders";
         private string productsAddress = "https://northwind.now.sh/api/products";
+        private string employeesAddress = "https://northwind.now.sh/api/employess";
 
         HttpClient _httpClient;
         HttpRequestMessage request;
         HttpResponseMessage response;
         List<OrdersByCountry> ordersByCountries;
         List<SalesByCountry> salesByCountries;
+        List<SalesByCategory> salesByCategories;
+
         List<Order> orders;
         public StatisticsService(HttpClient httpClient)
         {
@@ -86,7 +90,6 @@ namespace OrdersDashboard.Client.NorthwindServices
                 string json = await response.Content.ReadAsStringAsync();
                 orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
                 var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
-                statusCode = 200;
 
                 salesByCountries = groupedOrders.Select(groupedOrders => new SalesByCountry()
                 {
@@ -94,6 +97,7 @@ namespace OrdersDashboard.Client.NorthwindServices
                     CountrySum = groupedOrders.Sum(g => g.Details.Sum(g => g.UnitPrice * g.Quantity))
                 }).OrderByDescending(salesBycountries => salesBycountries.CountrySum).Take(10).ToList();
 
+                statusCode = 200;
             }
             catch (NotSupportedException)
             {
@@ -109,45 +113,54 @@ namespace OrdersDashboard.Client.NorthwindServices
             return (salesByCountries, statusCode);
         }
 
-        //    public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
-        //    {
-        //        int statusCode;
-        //        request = new HttpRequestMessage()
-        //        {
-        //            RequestUri = new Uri(ordersAddress),
-        //            Method = HttpMethod.Get
-        //        };
-        //        request.Headers.Add("mode", "no-cors");
+        public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
+        {
+            int statusCode;
+            request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(ordersAddress),
+                Method = HttpMethod.Get
+            };
+            request.Headers.Add("mode", "no-cors");
+            try
+            {
+                response = await _httpClient.SendAsync(request);
+                string json = await response.Content.ReadAsStringAsync();
+                orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
 
-        //        //    var groupedOrderDetail = _context.OrderDetails.GroupBy(od => od.Product.Category.CategoryName);
+                statusCode = 200;
+                salesByCategories = null;
+            }
+            catch (NotSupportedException)
+            {
+                salesByCategories = null;
+                statusCode = 500;
+            }
 
-        //        //    var salesByCategories = await groupedOrderDetail.Select(orderDetailGroup => new SalesByCategory
-        //        //    {
-        //        //        CategoryName = orderDetailGroup.Key,
-        //        //        SalesSum = orderDetailGroup.Sum(orderDetail => orderDetail.Quantity * orderDetail.UnitPrice)
-        //        //    }).OrderByDescending(salesByCategory => salesByCategory.SalesSum).ToListAsync();
+            catch (HttpRequestException)
+            {
+                salesByCategories = null;
+                statusCode = 500;
+            }
 
-        //        return salesByCategories;
-        //    }
+            //var groupedOrderDetail = _context.OrderDetails.GroupBy(od => od.Product.Category.CategoryName);
 
-        //}
+            //var salesByCategories = await groupedOrderDetail.Select(orderDetailGroup => new SalesByCategory
+            //{
+            //    CategoryName = orderDetailGroup.Key,
+            //    SalesSum = orderDetailGroup.Sum(orderDetail => orderDetail.Quantity * orderDetail.UnitPrice)
+            //}).OrderByDescending(salesByCategory => salesByCategory.SalesSum).ToListAsync();
 
-    }
-    public class OrdersByCountry
-    {
-        public string CountryName { set; get; }
-        public int OrdersCount { set; get; }
-    }
-    public class SalesByCountry
-    {
-        public string CountryName { get; set; }
-        public double CountrySum { get; set; }
-    }
-    public class SalesByCategory
-    {
-
+            return (salesByCategories, statusCode);
+        }
     }
 }
+public class SalesByCategory
+{
+    public string CategoryName { get; set; }
+    public double CategorySales { get; set; }
+}
+
 
 //order
 //{
@@ -209,3 +222,31 @@ namespace OrdersDashboard.Client.NorthwindServices
 //      "name": "Confections"
 //    }
 //},
+
+//{
+//    "id": 2,
+//    "lastName": "Fuller",
+//    "firstName": "Andrew",
+//    "title": "Vice President Sales",
+//    "titleOfCourtesy": "Dr.",
+//    "birthDate": "1952-02-19 00:00:00.000",
+//    "hireDate": "1992-08-14 00:00:00.000",
+//    "address": {
+//        "street": "908 W. Capital Way",
+//      "city": "Tacoma",
+//      "region": "WA",
+//      "postalCode": 98401,
+//      "country": "USA",
+//      "phone": "(206) 555-9482"
+//    },
+//    "notes": "Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative was promoted to sales manager",
+//    "reportsTo": "NULL",
+//    "territoryIds": [
+//      1730,
+//      1833,
+//      2116,
+//      2139,
+//      2184,
+//      40222,
+//      1581
+//    ]
