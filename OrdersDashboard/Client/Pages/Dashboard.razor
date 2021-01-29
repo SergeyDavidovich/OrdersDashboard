@@ -3,19 +3,41 @@
 @using OrdersDashboard.Client.NorthwindServices
 @using OrdersDashboard.Shared.Model
 @using OrdersDashboard.Shared.DTO
-
+@using Syncfusion.Blazor.Cards
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
 
 @inject ProductsService productService
 @inject StatisticsService statisticService
 
+
 <div class="wrapper">
     <div class="cards">
-        <div class="item card">Card 1</div>
-        <div class="item card">Card 2</div>
-        <div class="item card">Card 3</div>
-        <div class="item card">Card 4</div>
+        <div class="item card1">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="TOTAL EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card2">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="TOTAL EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card3">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="TOTAL EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card4">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="TOTAL EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
     </div>
     <div class="pies">
         <div class="item pie">
@@ -49,34 +71,71 @@
             </SfAccumulationChart>
         </div>
     </div>
-    @*<div class="bars">
-        <div class="item bar">
-            <SfChart Width="100%" Height="200px">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
-        </div>
-        <div class="item bar">
-            <SfChart Width="100%" Height="200px">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
-        </div>
-    </div>*@
+    <div class="bars">
+        @*<div class="item bar">
+                <SfChart Width="100%" Height="200px">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Width="100%" Height="200px">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@salesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>*@
+    </div>
 </div>
 
 <style>
+    .image-info {
+        max-height: 48px;
+        max-width: 48px;
+    }
+
+    /*    .card-class .e-card-header .e-card-header-caption .e-card-header-title,
+            .card-class .e-card-header .e-card-header-caption .e-card-sub-title
+        */
+
+    .e-card {
+        background-color: transparent;
+    }
+
+        .e-card:hover {
+            background-color: transparent;
+        }
+
+    /* .card-class {
+            background-color: rgb(255, 0, 0);
+        }*/
+
+    .e-card-header .e-card-header-caption .e-card-header-title {
+        color: white;
+        font-size: 22px;
+    }
+
+    .e-card .e-card-content {
+        color: white;
+        font-size: 28px;
+        text-align: right
+    }
+
+    .e-card .e-card-separator {
+        background-color: white;
+        height: 1px;
+    }
+
     * {
         box-sizing: border-box;
         margin: 0 !Important;
         /*padding-left:0!important;
-        padding-right:0!important;*/
+                padding-right:0!important;*/
         font-family: sans-serif;
         font-size: 16px;
     }
@@ -112,10 +171,19 @@
         border: 1px solid gray;
     }
 
-    .card {
-        height: 120px;
+    .card1 {
+        background-color: #ff6a00
     }
 
+    .card2 {
+        background-color: #11b637
+    }
+    .card3 {
+        background-color: #1882ad
+    }
+    .card4 {
+        background-color: #ff0000
+    }
     .pie {
         color: black;
         /*background-color: rgba(0, 255, 0, 0.5);*/
