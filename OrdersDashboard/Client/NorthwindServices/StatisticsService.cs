@@ -17,9 +17,12 @@ namespace OrdersDashboard.Client.NorthwindServices
         private string ordersAddress = "https://northwind.now.sh/api/orders";
         private string productsAddress = "https://northwind.now.sh/api/products";
         private string employeesAddress = "https://northwind.now.sh/api/employess";
+        private string customersaddress = "https://northwind.now.sh/api/customers";
+        private string suppliersAddress = "https://northwind.now.sh/api/suppliers";
+        private string categoryAddres = "https://northwind.now.sh/api/categories";
 
         HttpClient _httpClient;
-        HttpRequestMessage request;
+        //HttpRequestMessage request;
         HttpResponseMessage response;
         List<OrdersByCountry> ordersByCountries;
         List<SalesByCountry> salesByCountries;
@@ -30,16 +33,28 @@ namespace OrdersDashboard.Client.NorthwindServices
         {
             _httpClient = httpClient;
         }
-        public async Task<(List<OrdersByCountry> Data, int StatusCode)> GetOrdersByCountriesAsync()
+        //public async Task<(List<Order> Data, int StatusCode)> GetOrdersAsync()
+        //{
+
+        //}
+        #region private utilites
+        private HttpRequestMessage GetRequest(string address)
         {
-            int statusCode;
-            request = new HttpRequestMessage()
+            var request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(ordersAddress),
                 Method = HttpMethod.Get
             };
             request.Headers.Add("mode", "no-cors");
+            return request;
+        }
+        #endregion
 
+        #region public functions
+        public async Task<(List<OrdersByCountry> Data, int StatusCode)> GetOrdersByCountriesAsync()
+        {
+            int statusCode;
+            var request = GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -47,7 +62,6 @@ namespace OrdersDashboard.Client.NorthwindServices
                 string json = await response.Content.ReadAsStringAsync();
 
                 orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
-
 
                 var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
 
@@ -78,12 +92,7 @@ namespace OrdersDashboard.Client.NorthwindServices
         public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountriesAsync()
         {
             int statusCode;
-            request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(ordersAddress),
-                Method = HttpMethod.Get
-            };
-            request.Headers.Add("mode", "no-cors");
+            var request = GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -116,12 +125,7 @@ namespace OrdersDashboard.Client.NorthwindServices
         public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
         {
             int statusCode;
-            request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(ordersAddress),
-                Method = HttpMethod.Get
-            };
-            request.Headers.Add("mode", "no-cors");
+            var request = GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -142,26 +146,11 @@ namespace OrdersDashboard.Client.NorthwindServices
                 salesByCategories = null;
                 statusCode = 500;
             }
-
-            //var groupedOrderDetail = _context.OrderDetails.GroupBy(od => od.Product.Category.CategoryName);
-
-            //var salesByCategories = await groupedOrderDetail.Select(orderDetailGroup => new SalesByCategory
-            //{
-            //    CategoryName = orderDetailGroup.Key,
-            //    SalesSum = orderDetailGroup.Sum(orderDetail => orderDetail.Quantity * orderDetail.UnitPrice)
-            //}).OrderByDescending(salesByCategory => salesByCategory.SalesSum).ToListAsync();
-
             return (salesByCategories, statusCode);
         }
+        #endregion
     }
 }
-public class SalesByCategory
-{
-    public string CategoryName { get; set; }
-    public double CategorySales { get; set; }
-}
-
-
 //order
 //{
 //    "id": 10271,
