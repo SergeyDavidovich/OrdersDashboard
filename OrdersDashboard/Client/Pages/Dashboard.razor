@@ -16,26 +16,26 @@
     <div class="cards">
         <div class="item card1">
             <SfCard CssClass="card-class">
-                <CardHeader Title="EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="12" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card2">
             <SfCard CssClass="card-class">
-                <CardHeader Title="TOTAL:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="87" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card3">
             <SfCard CssClass="card-class">
-                <CardHeader Title="TOTAL:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="154" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card4">
             <SfCard CssClass="card-class">
-                <CardHeader Title="TOTAL:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="123123" EnableSeperator="true"></CardContent>
+                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="65" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
     </div>
@@ -105,15 +105,13 @@
 
     .e-card {
         background-color: transparent;
+        border:none;
     }
 
         .e-card:hover {
             background-color: transparent;
         }
 
-    /* .card-class {
-            background-color: rgb(255, 0, 0);
-        }*/
 
     .e-card-header .e-card-header-caption .e-card-header-title {
         color: white;
@@ -123,12 +121,16 @@
     .e-card .e-card-content {
         color: white;
         font-size: 28px;
-        text-align: right
+        text-align: center
     }
 
     .e-card .e-card-separator {
         background-color: white;
         height: 1px;
+    }
+
+    .e-card .e-card-header-caption .e-card-sub-title {
+        color: white;
     }
 
     * {
@@ -168,7 +170,7 @@
         padding: 6px;
         color: white;
         border-radius: 6px;
-        border: 1px solid gray;
+        border: 1px solid #b9b8b8;
     }
 
     .card1 {
