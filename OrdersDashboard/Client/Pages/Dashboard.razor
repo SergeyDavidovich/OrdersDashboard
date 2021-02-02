@@ -114,21 +114,25 @@ else
         background-color: transparent;
         border: none;
     }
-
-        .e-card:hover {
-            background-color: transparent;
+        .e-card .e-card-header {
+            padding: 0;
         }
-
+    .e-card:hover {
+        background-color: transparent;
+    }
 
     .e-card-header .e-card-header-caption .e-card-header-title {
         color: white;
-        font-size: 22px;
+        font-size: 1.5em;
+        text-align: right;
+        padding: 0;
     }
 
     .e-card .e-card-content {
         color: white;
-        font-size: 28px;
-        text-align: center
+        font-size: 3em;
+        text-align: right;
+        padding: 0;
     }
 
     .e-card .e-card-separator {
@@ -138,10 +142,12 @@ else
 
     .e-card .e-card-header-caption .e-card-sub-title {
         color: white;
+        text-align: right;
     }
     /*Конец - Внутренние классы компонента SfCard*/
 
     * {
+        font-size: 100%;
         box-sizing: border-box;
         margin: 0 !Important;
         /*padding-left:0!important;
@@ -177,8 +183,6 @@ else
     .item {
         padding: 6px;
         color: white;
-        border-radius: 6px;
-        border: 1px solid #b9b8b8;
     }
 
     .card1 {
@@ -198,6 +202,8 @@ else
     }
 
     .pie {
+        border-radius: 0px;
+        border: 1px solid #b9b8b8;
         color: black;
     }
 
@@ -222,6 +228,10 @@ else
     }
 
     @@media screen and (min-width: 640px) {
+        body {
+            font-size: 69%;
+        }
+
         .bars {
             display: grid;
             grid-template-columns: 1fr 1fr;

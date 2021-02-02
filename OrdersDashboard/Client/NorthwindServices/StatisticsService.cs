@@ -9,6 +9,7 @@ using System.IO;
 
 using System.Net.Http.Json;
 using OrdersDashboard.Shared.DTO;
+using OrdersDashboard.Client.Helpers;
 
 namespace OrdersDashboard.Client.NorthwindServices
 {
@@ -29,32 +30,16 @@ namespace OrdersDashboard.Client.NorthwindServices
         List<SalesByCategory> salesByCategories;
 
         List<Order> orders;
+   
         public StatisticsService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
-        //public async Task<(List<Order> Data, int StatusCode)> GetOrdersAsync()
-        //{
-
-        //}
-        #region private utilites
-        private HttpRequestMessage GetRequest(string address)
-        {
-            var request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(ordersAddress),
-                Method = HttpMethod.Get
-            };
-            request.Headers.Add("mode", "no-cors");
-            return request;
-        }
-        #endregion
-
-        #region public functions
         public async Task<(List<OrdersByCountry> Data, int StatusCode)> GetOrdersByCountriesAsync()
         {
             int statusCode;
-            var request = GetRequest(ordersAddress);
+            var request = (new NoCorsRequestHelper()).GetRequest(ordersAddress);
+            //var request = GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -92,7 +77,7 @@ namespace OrdersDashboard.Client.NorthwindServices
         public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountriesAsync()
         {
             int statusCode;
-            var request = GetRequest(ordersAddress);
+            var request = (new NoCorsRequestHelper()).GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -125,7 +110,7 @@ namespace OrdersDashboard.Client.NorthwindServices
         public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
         {
             int statusCode;
-            var request = GetRequest(ordersAddress);
+            var request = (new NoCorsRequestHelper()).GetRequest(ordersAddress);
             try
             {
                 response = await _httpClient.SendAsync(request);
@@ -148,7 +133,6 @@ namespace OrdersDashboard.Client.NorthwindServices
             }
             return (salesByCategories, statusCode);
         }
-        #endregion
     }
 }
 //order
