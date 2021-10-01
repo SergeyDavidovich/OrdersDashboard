@@ -1,0 +1,265 @@
+﻿@page "/"
+
+@using OrdersDashboard.Client.NorthwindServices
+@using OrdersDashboard.Model
+@using OrdersDashboard.Model.DTO
+@using Syncfusion.Blazor.Cards
+@using Syncfusion.Blazor.Charts
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+
+@inject ProductsService productService
+@inject StatisticsService statisticService
+
+<div class="wrapper">
+    <div class="cards">
+        <div class="item card1">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="12" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card2">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="87" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card3">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="154" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card4">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="65" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+    </div>
+    <div class="pies">
+            <div class="item pie">
+                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                            <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
+                                <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
+                            </AccumulationDataLabelSettings>
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                </SfAccumulationChart>
+            </div>
+            <div class="item pie">
+                <SfAccumulationChart Title="SALES BY COUNTRIES">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" Name="Sales" Explode="true">
+                            <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
+                                <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
+                            </AccumulationDataLabelSettings>
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                </SfAccumulationChart>
+            </div>
+            <div class="item pie">
+                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                </SfAccumulationChart>
+            </div>
+        </div>
+    @*<div class="bars">
+            <div class="item bar">
+                <SfChart Height="200px">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Height="200px">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+        </div>*@
+</div>
+<style>
+    .image-info {
+        max-height: 48px;
+        max-width: 48px;
+    }
+
+    /*Внутренние классы компонента SfCard*/
+
+    .e-card {
+        background-color: transparent;
+        border: none;
+    }
+
+        .e-card .e-card-header {
+            padding: 0;
+        }
+
+        .e-card:hover {
+            background-color: transparent;
+        }
+
+    .e-card-header .e-card-header-caption .e-card-header-title {
+        color: white;
+        font-size: 1.5em;
+        text-align: right;
+        padding: 0;
+    }
+
+    .e-card .e-card-content {
+        color: white;
+        font-size: 3em;
+        text-align: right;
+        padding: 0;
+    }
+
+    .e-card .e-card-separator {
+        background-color: white;
+        height: 1px;
+    }
+
+    .e-card .e-card-header-caption .e-card-sub-title {
+        color: white;
+        text-align: right;
+    }
+    /*Конец - Внутренние классы компонента SfCard*/
+
+
+    .px-4 {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .content{
+        padding-top:0!important;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0 !important;
+    }
+
+    .wrapper {
+        display: grid;
+        padding: 6px;
+        margin: 0px;
+        grid-gap: 6px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 6px;
+    }
+
+    .pies {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 6px;
+    }
+
+    .bars {
+        display: grid;
+        grid-gap: 6px;
+    }
+
+    .item {
+        padding: 6px;
+        color: white;
+        box-shadow: 5px 6px 8px 1px rgb(0 0 0 / 25%);
+    }
+
+    .card1 {
+        background-color: #ff6a00
+    }
+
+    .card2 {
+        background-color: #11b637
+    }
+
+    .card3 {
+        background-color: #1882ad
+    }
+
+    .card4 {
+        background-color: #ff0000
+    }
+
+    .pie {
+        border-radius: 0px;
+        border: 1px solid #b9b8b8;
+        color: black;
+    }
+
+    .bar {
+        height: 140px;
+    }
+
+    @@media screen and (min-width: 640px) {
+        .content{
+            padding-top:1.1em!important;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 6px;
+        }
+
+        .pies {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 6px;
+        }
+
+        body {
+            /*font-size: 69%;*/
+        }
+
+        .bars {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 6px;
+        }
+
+        .item {
+            /*padding:0;*/
+        }
+    }
+</style>
+
+@code {
+
+    #region
+
+    public List<OrdersByCountry> OrdersByCountries = new List<OrdersByCountry>();
+    public List<SalesByCountry> SalesByCountries = new List<SalesByCountry>();
+
+    protected override async Task OnInitializedAsync()
+    {
+#if DEBUG
+        //await Task.Delay(6000);
+#endif
+
+        var ordersByCountriesResponce = await statisticService.GetOrdersByCountriesAsync();
+
+        OrdersByCountries = ordersByCountriesResponce.Data;
+
+        var salesByCountries = await statisticService.GetSalesByCountriesAsync();
+        SalesByCountries = salesByCountries.Data;
+    }
+
+    #endregion
+}

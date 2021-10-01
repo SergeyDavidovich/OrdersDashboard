@@ -1,0 +1,90 @@
+﻿@page "/orders"
+
+@using OrdersDashboard.Model
+@using OrdersDashboard.Client.NorthwindServices
+@using OrdersDashboard.Model.DTO
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Popups
+
+@inject ProductsService productService
+@inject StatisticsService statisticsService
+
+<SfGrid TValue="Order" DataSource="@OrdersList" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "View", "Search" })"
+        EnableAltRow="true"
+        AllowPaging="true"
+        EnableVirtualization="false"
+        AllowTextWrap="true"
+        AllowSorting="true" Height="100%">
+    @*Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">*@
+    <GridColumns>
+        <GridColumn Type="ColumnType.CheckBox" Width="50"></GridColumn>
+        <GridColumn Field=@nameof(Order.Id) AutoFit="true"></GridColumn>
+        <GridColumn Field=@nameof(Order.OrderDate)></GridColumn>
+        <GridColumn Field=@nameof(Order.ShipName)></GridColumn>
+    </GridColumns>
+    <GridTextWrapSettings WrapMode="WrapMode.Both"></GridTextWrapSettings>
+    <GridEvents RowSelected="RowSelectedHandler" TValue="Order"></GridEvents>
+    <GridPageSettings PageCount="20"></GridPageSettings>
+    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Normal"></GridEditSettings>
+</SfGrid>
+
+<SfDialog @ref="DialogRef" ShowCloseIcon="false" Visible="false" IsModal="true" Width="500px" EnableResize="true" AllowDragging="true" Target="#target">
+    <DialogTemplates>
+        <Header> @DialogHeader</Header>
+        <Content>
+            <p>Your current software version is up to date.</p>
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
+        <DialogButton Content="Cancel" OnClick="@CloseDialog" />
+    </DialogButtons>
+    <DialogAnimationSettings Effect="DialogEffect.Zoom" Duration="700"></DialogAnimationSettings>
+</SfDialog>
+
+<style>
+    .e-grid{
+        cursor:pointer;
+    }
+    .e-dialog{
+        width:500px;
+    }
+    .e-dialog .e-dlg-header {
+        color: white;
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .e-dialog .e-dlg-header-content {
+        border-radius:3px;
+        padding: 14px;
+        background-color: crimson;
+    }
+</style>
+
+@code {
+
+    SfDialog DialogRef;
+    public List<Order> OrdersList { get; set; }
+    string DialogHeader { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+#if DEBUG
+        //await Task.Delay(6000);
+#endif
+
+        OrdersList = (await statisticsService.GetOrdersAsync()).Data;
+    }
+
+    public void RowSelectedHandler(RowSelectEventArgs<Order> args)
+    {
+        Order selectedOrder = OrdersList.Where(p => p.Id == args.Data.Id).First();
+        DialogHeader = $"ORDER #  {selectedOrder.Id}";
+
+        this.DialogRef.Show(false);
+    }
+    private async Task CloseDialog()
+    {
+        await this.DialogRef.Hide();
+    }
+}
