@@ -105,7 +105,7 @@
       "url": "_framework\/dotnet.5.0.10.js"
     },
     {
-      "hash": "sha256-\/slE4l3OAsmNqzPDGzv9+R+lQsMUBX5WlSOzZObj+iY=",
+      "hash": "sha256-1eTMQdfOfMpSBNzRSb54fqirzqFCkXAInq3e\/W0+NDQ=",
       "url": "OrdersDashboard.styles.css"
     },
     {
@@ -773,7 +773,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-Ak4FtBgiRu08+ZUI7mb7jel3779YPK0hTyucpysbERo=",
+      "hash": "sha256-CHUuvI3smhdxIv5YkC8FSkx8Lv1TzcT7BiSfjlmfMIk=",
       "url": "_framework\/OrdersDashboard.dll"
     },
     {
@@ -945,7 +945,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-c7gPnIIPYyWBLJU7HMsBLwCsKSW\/7yl03FebR\/NUOag=",
+      "hash": "sha256-B1mftea+Y+2YmsvavTP0k\/5VFrzF4kXasQyQwgOsgvg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -953,5 +953,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "iuc8rpgc"
+  "version": "ov1\/xaI4"
 };
