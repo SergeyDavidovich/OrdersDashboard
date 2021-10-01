@@ -136,8 +136,9 @@
         text-align: right;
     }
     /*Конец - Внутренние классы компонента SfCard*/
-
-
+        .item {
+            /*padding:0;*/
+        }
     .px-4 {
         padding-left: 0!important;
         padding-right: 0!important;
@@ -207,9 +208,10 @@
         height: 140px;
     }
 
+
     @@media screen and (min-width: 640px) {
-        .content{
-            padding-top:1.1em!important;
+        .content {
+            padding-top: 1.1em !important;
         }
 
         .cards {
@@ -232,10 +234,6 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-gap: 6px;
-        }
-
-        .item {
-            /*padding:0;*/
         }
     }
 </style>
