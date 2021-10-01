@@ -49,6 +49,22 @@
       "url": "css\/open-iconic\/README.md"
     },
     {
+      "hash": "sha256-L24fusvJsQRZgfGzYUQVudNM9FbFtkXEXowGP9RjzSA=",
+      "url": "css\/style.css"
+    },
+    {
+      "hash": "sha256-L24fusvJsQRZgfGzYUQVudNM9FbFtkXEXowGP9RjzSA=",
+      "url": "css\/style.css"
+    },
+    {
+      "hash": "sha256-+XDWo+ipXwg+\/kqdn0MyDKRV3slAPgr1hlhr0Nm2DCw=",
+      "url": "css\/style.min.css"
+    },
+    {
+      "hash": "sha256-I6pLJp389\/tFCPdRtuuuxT9EML7mgWIBUvccjlhrRz0=",
+      "url": "css\/style.scss"
+    },
+    {
       "hash": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=",
       "url": "favicon.ico"
     },
@@ -65,7 +81,7 @@
       "url": "images\/info.png"
     },
     {
-      "hash": "sha256-XHNMGKzuERPg0wwSMLb8NTZ4r3MYAo87OhCBpdCPTbg=",
+      "hash": "sha256-M2cLK6f\/zI\/GGPREBYI0W6ZBmJlBFuthtnZu\/7jeE8M=",
       "url": "index.html"
     },
     {
@@ -773,7 +789,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-i74YOLA7S9gyV19ouvB2iyOnOVUuTAgfaN2P0stzOwY=",
+      "hash": "sha256-ZbL0Eb\/bd2rdyZoHoSyIc2qWYGY6Kd3NhI9vIZfC\/+w=",
       "url": "_framework\/OrdersDashboard.dll"
     },
     {
@@ -945,7 +961,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-DltEUuxOuk+uKdWOsCra1fMrkApJMed0ByAOtZR60Xw=",
+      "hash": "sha256-9rFYsUx2zMTRSYgGqTScvlVauzooV98jPP\/z436Qcag=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -953,5 +969,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "OxoABvKF"
+  "version": "JucVl+np"
 };
