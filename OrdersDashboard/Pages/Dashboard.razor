@@ -40,14 +40,13 @@
     </div>
     <div class="pies">
             <div class="item pie">
-                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true">
+                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
                     <AccumulationChartSeriesCollection>
                         <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
-                            <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
-                                <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
-                            </AccumulationDataLabelSettings>
                         </AccumulationChartSeries>
                     </AccumulationChartSeriesCollection>
+                    <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                    </AccumulationChartLegendSettings>
                 </SfAccumulationChart>
             </div>
             <div class="item pie">
