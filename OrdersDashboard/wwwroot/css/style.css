@@ -1,2 +1,4 @@
 ﻿body {
-  background-color: crimson; }
+  /* $body-back: crimson;
+
+    background-color: $body-back;*/ }

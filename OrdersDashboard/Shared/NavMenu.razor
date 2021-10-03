@@ -1,7 +1,7 @@
 ﻿
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 fixed-top">
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand text-light" asp-area="" asp-page="/Index">My Application</a>
+        <a class="navbar-brand text-light" asp-area="" asp-page="/Index">My application</a>
         <button class="navbar-toggler" @onclick="ToggleNavMenu" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                     <a class="nav-link text-light" href="" Match="NavLinkMatch.All">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="orders">Orders</a>
+                    <a class="nav-link text-light" href="counter">Counter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="fetchdata">Fetch data</a>
@@ -21,8 +21,25 @@
         </div>
     </div>
 </nav>
+
 <style>
-  
+    @@media (min-width:400px) {
+        nav {
+            position: fixed !important;
+        }
+    }
+
+    .bg-primary {
+        background: #557291 !important
+    }
+
+    nav {
+        position: relative;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
 </style>
 
 @code {

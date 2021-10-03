@@ -15,40 +15,69 @@
     <div class="cards">
         <div class="item card1">
             <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
                 <CardContent Content="12" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card2">
             <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
                 <CardContent Content="87" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card3">
             <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
                 <CardContent Content="154" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
         <div class="item card4">
             <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.jpg" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
                 <CardContent Content="65" EnableSeperator="true"></CardContent>
             </SfCard>
         </div>
     </div>
     <div class="pies">
-            <div class="item pie">
-                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
-                        </AccumulationChartSeries>
-                    </AccumulationChartSeriesCollection>
-                    <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
-                    </AccumulationChartLegendSettings>
-                </SfAccumulationChart>
-            </div>
+        <div class="item bar">
+            <SfChart Height="100%">
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" 
+                                 Type="ChartSeriesType.MultiColoredArea">
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
+        </div>
+        <div class="item pie">
+            <SfAccumulationChart Height="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                </AccumulationChartLegendSettings>
+            </SfAccumulationChart>
+        </div>
+        <div class="item bar">
+            <SfChart Height="100%">
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
+        </div>
+    </div>
+    <div class="bars">
+        <div class="item pie">
+            <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+            </SfAccumulationChart>
+        </div>
             <div class="item pie">
                 <SfAccumulationChart Title="SALES BY COUNTRIES">
                     <AccumulationChartSeriesCollection>
@@ -60,35 +89,17 @@
                     </AccumulationChartSeriesCollection>
                 </SfAccumulationChart>
             </div>
-            <div class="item pie">
-                <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
-                        </AccumulationChartSeries>
-                    </AccumulationChartSeriesCollection>
-                </SfAccumulationChart>
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" 
+                                     Type="ChartSeriesType.Spline">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
             </div>
         </div>
-    @*<div class="bars">
-            <div class="item bar">
-                <SfChart Height="200px">
-                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                    <ChartSeriesCollection>
-                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                        </ChartSeries>
-                    </ChartSeriesCollection>
-                </SfChart>
-            </div>
-            <div class="item bar">
-                <SfChart Height="200px">
-                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                    <ChartSeriesCollection>
-                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                        </ChartSeries>
-                    </ChartSeriesCollection>
-                </SfChart>
-            </div>
-        </div>*@
 </div>
 <style>
     .image-info {
@@ -153,7 +164,8 @@
 
     .wrapper {
         display: grid;
-        padding: 6px;
+        grid-template-rows:.5fr 2fr 2fr;
+        padding: 0px;
         margin: 0px;
         grid-gap: 6px;
     }
@@ -204,7 +216,7 @@
     }
 
     .bar {
-        height: 140px;
+        /*height: 140px;*/
     }
 
     e-chart {
@@ -219,7 +231,7 @@
 
     @@media screen and (min-width: 640px) {
         .content {
-            padding-top: 1.1em !important;
+            /*padding-top: 1.1em !important;*/
         }
 
         .cards {
@@ -240,7 +252,7 @@
 
         .bars {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 6px;
         }
     }
