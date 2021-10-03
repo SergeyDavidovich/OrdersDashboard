@@ -757,7 +757,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-OSbziCKADNc3QllH14sdFy\/7\/9bu\/DSBcXUlqRDA0Fc=",
+      "hash": "sha256-JIbKC6b9Hkv395IVscKzFsi7L1P9wtynczbDqlg75hE=",
       "url": "_framework\/OrdersDashboard.dll"
     },
     {
@@ -937,7 +937,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-TN5wg2aHi745SQOtS7u9fyEehr5hlQRVLE5F9CFx6qM=",
+      "hash": "sha256-05DVd9DrwSg\/bQVpBRdhzuZwtGBwJk4CCWFqCg34Tbg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -945,5 +945,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "gBBBnbf0"
+  "version": "s4vEAMzQ"
 };
