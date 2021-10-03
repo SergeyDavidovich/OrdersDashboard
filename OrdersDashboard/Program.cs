@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+// https://blazor.syncfusion.com/documentation/release-notes/19.3.43?type=all
+
 namespace OrdersDashboard
 {
     public class Program
@@ -18,7 +20,7 @@ namespace OrdersDashboard
         {
             //Register Syncfusion license 
             Syncfusion.Licensing.SyncfusionLicenseProvider
-                .RegisterLicense("NTA2NzIzQDMxMzkyZTMyMmUzMGFLSXF5dE8vWS95U1hzbmFTcXZZS2hQa0hZVkJoZDE3cnk5VS8wMWZBQ1U9");
+                .RegisterLicense("NTEwNjU1QDMxMzkyZTMzMmUzMEY4TVVBZm5UK25DN01YRG5md3RKSkRDdEZnVDNub1FUemJPQThpU3ZGOVU9");
 
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");

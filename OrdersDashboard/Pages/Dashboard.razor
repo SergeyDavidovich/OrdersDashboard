@@ -44,7 +44,7 @@
                 <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
                 <ChartSeriesCollection>
                     <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" 
-                                 Type="ChartSeriesType.MultiColoredArea">
+                                 Type="ChartSeriesType.Bar">
                     </ChartSeries>
                 </ChartSeriesCollection>
             </SfChart>
@@ -172,7 +172,7 @@
 
     .cards {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 6px;
     }
 
@@ -261,6 +261,7 @@
 @code {
 
     #region
+    SfAccumulationChart pie = new SfAccumulationChart();
 
     public List<OrdersByCountry> OrdersByCountries = new List<OrdersByCountry>();
     public List<SalesByCountry> SalesByCountries = new List<SalesByCountry>();
@@ -278,6 +279,5 @@
         var salesByCountries = await statisticService.GetSalesByCountriesAsync();
         SalesByCountries = salesByCountries.Data;
     }
-
     #endregion
 }
