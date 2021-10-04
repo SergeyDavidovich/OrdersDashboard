@@ -1,0 +1,66 @@
+﻿@page "/diagramm"
+@using OrdersDashboard.Client.NorthwindServices
+@using OrdersDashboard.Model
+@using OrdersDashboard.Model.DTO
+
+@inject ProductsService productService
+@inject StatisticsService statisticService
+
+<div class="wrapper">
+    <div class="pies">
+        <div class="pie">
+            <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                </AccumulationChartLegendSettings>
+            </SfAccumulationChart>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .pie {
+        border-radius: 10px;
+        border: 1px solid #b9b8b8;
+        color: black;
+        padding:2px;
+    }
+
+    e-chart {
+        width: inherit !important;
+        height: inherit !important;
+    }
+
+    .e-accumulationchart {
+        width: inherit !important;
+        height: inherit !important;
+    }
+</style>
+
+@code {
+    #region
+    SfAccumulationChart pie = new SfAccumulationChart();
+
+    public List<OrdersByCountry> OrdersByCountries = new List<OrdersByCountry>();
+    public List<SalesByCountry> SalesByCountries = new List<SalesByCountry>();
+
+    protected override async Task OnInitializedAsync()
+    {
+#if DEBUG
+        //await Task.Delay(6000);
+#endif
+
+        var ordersByCountriesResponce = await statisticService.GetOrdersByCountriesAsync();
+
+        OrdersByCountries = ordersByCountriesResponce.Data;
+
+        var salesByCountries = await statisticService.GetSalesByCountriesAsync();
+        SalesByCountries = salesByCountries.Data;
+    }
+    #endregion
+
+}

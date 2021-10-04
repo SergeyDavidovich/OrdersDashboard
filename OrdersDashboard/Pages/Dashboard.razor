@@ -12,99 +12,93 @@
 @inject StatisticsService statisticService
 
 <div class="wrapper">
-    <div class="cards">
-        <div class="item card1">
-            <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="12" EnableSeperator="true"></CardContent>
-            </SfCard>
-        </div>
-        <div class="item card2">
-            <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="87" EnableSeperator="true"></CardContent>
-            </SfCard>
-        </div>
-        <div class="item card3">
-            <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="154" EnableSeperator="true"></CardContent>
-            </SfCard>
-        </div>
-        <div class="item card4">
-            <SfCard CssClass="card-class">
-                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
-                <CardContent Content="65" EnableSeperator="true"></CardContent>
-            </SfCard>
-        </div>
-    </div>
+    @*<div class="cards">
+            <div class="item card1">
+                <SfCard CssClass="card-class">
+                    <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                    <CardContent Content="12" EnableSeperator="true"></CardContent>
+                </SfCard>
+            </div>
+            <div class="item card2">
+                <SfCard CssClass="card-class">
+                    <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                    <CardContent Content="87" EnableSeperator="true"></CardContent>
+                </SfCard>
+            </div>
+            <div class="item card3">
+                <SfCard CssClass="card-class">
+                    <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                    <CardContent Content="154" EnableSeperator="true"></CardContent>
+                </SfCard>
+            </div>
+            <div class="item card4">
+                <SfCard CssClass="card-class">
+                    <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                    <CardContent Content="65" EnableSeperator="true"></CardContent>
+                </SfCard>
+            </div>
+        </div>*@
     <div class="pies">
-        @if (OrdersByCountries != null)
-        {
-        <div class="item pie">
-            <SfAccumulationChart Height="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
-                <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
-                    </AccumulationChartSeries>
-                </AccumulationChartSeriesCollection>
-                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
-                </AccumulationChartLegendSettings>
-            </SfAccumulationChart>
-        </div>
-        <div class="item pie">
-            <SfAccumulationChart Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
-                <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
-                    </AccumulationChartSeries>
-                </AccumulationChartSeriesCollection>
-            </SfAccumulationChart>
-        </div>
-        }
-        @if (SalesByCountries != null)
-        {
-        <div class="item pie">
-            <SfAccumulationChart Title="SALES BY COUNTRIES">
-                <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" Name="Sales" Explode="true">
-                        <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
-                            <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
-                        </AccumulationDataLabelSettings>
-                    </AccumulationChartSeries>
-                </AccumulationChartSeriesCollection>
-            </SfAccumulationChart>
-        </div>
-        }
+            <div class="item pie">
+                <SfAccumulationChart Height="100%" Width="450px" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                    <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                    </AccumulationChartLegendSettings>
+                </SfAccumulationChart>
+            </div>
+        @*<div class="item pie">
+                <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Explode="true">
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                </SfAccumulationChart>
+            </div>
+            <div class="item pie">
+                <SfAccumulationChart Height="100%" Width="100%" Title="SALES BY COUNTRIES">
+                    <AccumulationChartSeriesCollection>
+                        <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" Name="Sales" Explode="true">
+                            <AccumulationDataLabelSettings Name="Text" Visible="true" Position="AccumulationLabelPosition.Outside">
+                                <AccumulationChartConnector Length="20px" Type="ConnectorType.Curve"></AccumulationChartConnector>
+                            </AccumulationDataLabelSettings>
+                        </AccumulationChartSeries>
+                    </AccumulationChartSeriesCollection>
+                </SfAccumulationChart>
+            </div>*@
     </div>
     @*<div class="bars">
-        <div class="item bar">
-            <SfChart Height="100%">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7"
-                                 Type="ChartSeriesType.Bar">
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
-        </div>
-        <div class="item bar">
-            <SfChart Height="100%">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
-        </div>
-        <div class="item bar">
-            <SfChart Height="100%">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
-        </div>
-    </div>*@
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7"
+                                     Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+        </div>*@
 </div>
 <style>
     .image-info {
@@ -253,6 +247,7 @@
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 6px;
         }
+
         .bars {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
