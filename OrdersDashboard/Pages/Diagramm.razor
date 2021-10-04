@@ -1,4 +1,4 @@
-﻿@page "/diagramm"
+﻿@page "/"
 @using OrdersDashboard.Client.NorthwindServices
 @using OrdersDashboard.Model
 @using OrdersDashboard.Model.DTO
@@ -18,11 +18,39 @@
                 </AccumulationChartLegendSettings>
             </SfAccumulationChart>
         </div>
-
+    </div>
+    <div class="pies">
+        <div class="pie">
+            <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                </AccumulationChartLegendSettings>
+            </SfAccumulationChart>
+        </div>
+    </div>
+    <div class="pies">
+        <div class="pie">
+            <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                </AccumulationChartLegendSettings>
+            </SfAccumulationChart>
+        </div>
     </div>
 </div>
 
 <style>
+
+    .wrapper{
+        display:flex;
+        flex-direction:column;
+    }
     .pie {
         border-radius: 10px;
         border: 1px solid #b9b8b8;

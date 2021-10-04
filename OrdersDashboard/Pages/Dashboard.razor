@@ -1,12 +1,15 @@
-﻿@page "/"
+﻿@page "/diagramm"
 
-@using OrdersDashboard.Client.NorthwindServices
-@using OrdersDashboard.Model
 @using OrdersDashboard.Model.DTO
 @using Syncfusion.Blazor.Cards
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Buttons
+
+@using OrdersDashboard.Client.NorthwindServices
+@using OrdersDashboard.Model
+@using OrdersDashboard.Model.DTO
+
 
 @inject ProductsService productService
 @inject StatisticsService statisticService
@@ -39,16 +42,16 @@
             </div>
         </div>*@
     <div class="pies">
-            <div class="item pie">
-                <SfAccumulationChart Height="100%" Width="450px" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
-                        </AccumulationChartSeries>
-                    </AccumulationChartSeriesCollection>
-                    <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
-                    </AccumulationChartLegendSettings>
-                </SfAccumulationChart>
-            </div>
+        <div class="item pie">
+            <SfAccumulationChart Height="100%" Width="450px" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+                <AccumulationChartSeriesCollection>
+                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    </AccumulationChartSeries>
+                </AccumulationChartSeriesCollection>
+                <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
+                </AccumulationChartLegendSettings>
+            </SfAccumulationChart>
+        </div>
         @*<div class="item pie">
                 <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true">
                     <AccumulationChartSeriesCollection>
