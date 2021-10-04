@@ -7,6 +7,32 @@
 @inject StatisticsService statisticService
 
 <div class="wrapper">
+    <div class="cards">
+        <div class="item card1">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="EMPLOYEES:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="12" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card2">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="PRODUCTS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="87" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card3">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="ORDERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="154" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+        <div class="item card4">
+            <SfCard CssClass="card-class">
+                <CardHeader Title="Total" SubTitle="CUSTOMERS:" ImageUrl="images/info.png" ImagePosition="ImagePosition.Left"></CardHeader>
+                <CardContent Content="65" EnableSeperator="true"></CardContent>
+            </SfCard>
+        </div>
+    </div>
     <div class="pies">
         <div class="pie">
             <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
@@ -47,16 +73,79 @@
 
 <style>
 
-    .wrapper{
-        display:flex;
-        flex-direction:column;
+    .pies {
+        display: flex;
+        flex-direction: column;
     }
+
     .pie {
         border-radius: 10px;
         border: 1px solid #b9b8b8;
         color: black;
-        padding:2px;
+        padding: 2px;
     }
+
+    .cards{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:6px;
+    }
+
+    .card1 {
+        background-color: #ff6a00
+    }
+
+    .card2 {
+        background-color: #11b637
+    }
+
+    .card3 {
+        background-color: #1882ad
+    }
+
+    .card4 {
+        background-color: #ff0000
+    }
+
+    /*Внутренние классы компонента SfCard*/
+
+    .e-card {
+        background-color: transparent;
+        border: none;
+    }
+
+        .e-card .e-card-header {
+            padding: 0;
+        }
+
+        .e-card:hover {
+            background-color: transparent;
+        }
+
+    .e-card-header .e-card-header-caption .e-card-header-title {
+        color: white;
+        font-size: 1.5em;
+        text-align: right;
+        padding: 0;
+    }
+
+    .e-card .e-card-content {
+        color: white;
+        font-size: 3em;
+        text-align: right;
+        padding: 0;
+    }
+
+    .e-card .e-card-separator {
+        background-color: white;
+        height: 1px;
+    }
+
+    .e-card .e-card-header-caption .e-card-sub-title {
+        color: white;
+        text-align: right;
+    }
+    /*Конец - Внутренние классы компонента SfCard*/
 
     e-chart {
         width: inherit !important;
