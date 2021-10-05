@@ -61,40 +61,54 @@ namespace OrdersDashboard.Client.NorthwindServices
 
         public async Task<(List<OrdersByCountry> Data, int StatusCode)> GetOrdersByCountriesAsync()
         {
-            int statusCode;
-            var request = (new NoCorsRequestHelper()).GetRequest(ordersUri);
-            try
+            //int statusCode;
+            //var request = (new NoCorsRequestHelper()).GetRequest(ordersUri);
+            //try
+            //{
+            //    response = await _httpClient.SendAsync(request);
+
+            //    string json = await response.Content.ReadAsStringAsync();
+
+            //    orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
+
+            //    var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
+
+            //    ordersByCountries = (List<OrdersByCountry>)groupedOrders.Select(orderGroup =>
+            //    new OrdersByCountry
+            //    {
+            //        CountryName = orderGroup.Key,
+            //        OrdersCount = orderGroup.Count()
+            //    }).OrderByDescending(ordersByCountry => ordersByCountry.OrdersCount).Take(10).ToList();
+
+            //    statusCode = 200;
+            //}
+            //catch (NotSupportedException)
+            //{
+            //    ordersByCountries = null;
+            //    statusCode = 500;
+            //}
+
+            //catch (HttpRequestException)
+            //{
+            //    ordersByCountries = null;
+            //    statusCode = 500;
+            //}
+            //return (ordersByCountries, statusCode);
+
+            List<OrdersByCountry> list = new()
             {
-                response = await _httpClient.SendAsync(request);
-
-                string json = await response.Content.ReadAsStringAsync();
-
-                orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
-
-                var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
-
-                ordersByCountries = (List<OrdersByCountry>)groupedOrders.Select(orderGroup =>
-                new OrdersByCountry
-                {
-                    CountryName = orderGroup.Key,
-                    OrdersCount = orderGroup.Count()
-                }).OrderByDescending(ordersByCountry => ordersByCountry.OrdersCount).Take(10).ToList();
-
-                statusCode = 200;
+                new OrdersByCountry() { CountryName= "Germany", OrdersCount=23},
+                new OrdersByCountry() { CountryName = "UK", OrdersCount = 133 },
+                new OrdersByCountry() { CountryName = "Sweden", OrdersCount = 67 },
+                new OrdersByCountry() { CountryName = "France", OrdersCount = 86 },
+                new OrdersByCountry() { CountryName = "Canada", OrdersCount = 43 },
+                new OrdersByCountry() { CountryName = "USA", OrdersCount = 11 },
+                new OrdersByCountry() { CountryName = "Switzerland", OrdersCount = 23 },
             }
-            catch (NotSupportedException)
-            {
-                ordersByCountries = null;
-                statusCode = 500;
-            }
+                ;
 
-            catch (HttpRequestException)
-            {
-                ordersByCountries = null;
-                statusCode = 500;
-            }
 
-            return (ordersByCountries, statusCode);
+            return (list, 200);
         }
 
         public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountriesAsync()
