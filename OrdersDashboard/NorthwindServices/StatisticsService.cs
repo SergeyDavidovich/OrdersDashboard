@@ -97,78 +97,76 @@ namespace OrdersDashboard.Client.NorthwindServices
 
             List<OrdersByCountry> list = new()
             {
-                new OrdersByCountry() { CountryName= "Germany", OrdersCount=23},
+                new OrdersByCountry() { CountryName = "Germany", OrdersCount = 23 },
                 new OrdersByCountry() { CountryName = "UK", OrdersCount = 133 },
                 new OrdersByCountry() { CountryName = "Sweden", OrdersCount = 67 },
                 new OrdersByCountry() { CountryName = "France", OrdersCount = 86 },
                 new OrdersByCountry() { CountryName = "Canada", OrdersCount = 43 },
                 new OrdersByCountry() { CountryName = "USA", OrdersCount = 11 },
                 new OrdersByCountry() { CountryName = "Switzerland", OrdersCount = 23 },
-            }
-                ;
-
-
+            };
             return (list, 200);
-        }
-
-        public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountriesAsync()
-        {
-            int statusCode;
-            var request = (new NoCorsRequestHelper()).GetRequest(ordersUri);
-            try
-            {
-                response = await _httpClient.SendAsync(request);
-                string json = await response.Content.ReadAsStringAsync();
-                orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
-                var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
-
-                salesByCountries = groupedOrders.Select(groupedOrders => new SalesByCountry()
-                {
-                    CountryName = groupedOrders.Key,
-                    CountrySum = groupedOrders.Sum(g => g.Details.Sum(g => g.UnitPrice * g.Quantity))
-                }).OrderByDescending(salesBycountries => salesBycountries.CountrySum).Take(10).ToList();
-
-                statusCode = 200;
-            }
-            catch (NotSupportedException)
-            {
-                salesByCountries = null;
-                statusCode = 500;
-            }
-
-            catch (HttpRequestException)
-            {
-                salesByCountries = null;
-                statusCode = 500;
-            }
-            return (salesByCountries, statusCode);
         }
 
         public async Task<(List<SalesByCategory> Data, int StatusCode)> GetSalesByCategoriesAsync()
         {
-            int statusCode;
-            var request = (new NoCorsRequestHelper()).GetRequest(ordersUri);
-            try
-            {
-                response = await _httpClient.SendAsync(request);
-                string json = await response.Content.ReadAsStringAsync();
-                orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
+            //int statusCode;
+            //var request = (new NoCorsRequestHelper()).GetRequest(ordersUri);
+            //try
+            //{
+            //    response = await _httpClient.SendAsync(request);
+            //    string json = await response.Content.ReadAsStringAsync();
+            //    orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(json).ToList();
+            //    var groupedOrders = orders.GroupBy(order => order.ShipAddress.Country).ToList();
 
-                statusCode = 200;
-                salesByCategories = null;
-            }
-            catch (NotSupportedException)
-            {
-                salesByCategories = null;
-                statusCode = 500;
-            }
+            //    salesByCountries = groupedOrders.Select(groupedOrders => new SalesByCountry()
+            //    {
+            //        CountryName = groupedOrders.Key,
+            //        CountrySum = groupedOrders.Sum(g => g.Details.Sum(g => g.UnitPrice * g.Quantity))
+            //    }).OrderByDescending(salesBycountries => salesBycountries.CountrySum).Take(10).ToList();
 
-            catch (HttpRequestException)
+            //    statusCode = 200;
+            //}
+            //catch (NotSupportedException)
+            //{
+            //    salesByCountries = null;
+            //    statusCode = 500;
+            //}
+
+            //catch (HttpRequestException)
+            //{
+            //    salesByCountries = null;
+            //    statusCode = 500;
+            //}
+            //return (salesByCountries, statusCode);
+
+            List<SalesByCategory> list = new()
             {
-                salesByCategories = null;
-                statusCode = 500;
-            }
-            return (salesByCategories, statusCode);
+                new SalesByCategory() { CategoryName = "Beverages", CategorySales = 234 },
+                new SalesByCategory() { CategoryName = "Condiments", CategorySales = 533 },
+                new SalesByCategory() { CategoryName = "Confections", CategorySales = 167 },
+                new SalesByCategory() { CategoryName = "Dairy Products", CategorySales = 86 },
+                new SalesByCategory() { CategoryName = "Grains/Cereals", CategorySales = 243 },
+                new SalesByCategory() { CategoryName = "Produce", CategorySales = 311 },
+                new SalesByCategory() { CategoryName = "Seafood", CategorySales = 423 },
+            };
+            return (list, 200);
+
+        }
+
+      public async Task<(List<SalesByCountry> Data, int StatusCode)> GetSalesByCountryAsync()
+        {
+            List<SalesByCountry> list = new()
+            {
+                new SalesByCountry() { CountryName = "Beverages", CountrySum = 45 },
+                new SalesByCountry() { CountryName = "Condiments", CountrySum = 611 },
+                new SalesByCountry() { CountryName = "Confections", CountrySum = 467 },
+                new SalesByCountry() { CountryName = "Dairy Products", CountrySum = 186 },
+                new SalesByCountry() { CountryName = "Grains/Cereals", CountrySum = 266 },
+                new SalesByCountry() { CountryName = "Produce", CountrySum = 811 },
+                new SalesByCountry() { CountryName = "Seafood", CountrySum = 423 },
+            };
+            return (list, 200);
         }
     }
 }

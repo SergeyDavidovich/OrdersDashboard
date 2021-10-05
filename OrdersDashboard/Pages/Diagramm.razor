@@ -47,9 +47,9 @@
     </div>
     <div class="pies">
         <div class="pie">
-            <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+            <SfAccumulationChart Height="100%" Width="100%" Title="SALES BY CATEGORIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    <AccumulationChartSeries DataSource="@SalesByCategories" XName="CategoryName" YName="CategorySales" Name="Categories" Explode="true">
                     </AccumulationChartSeries>
                 </AccumulationChartSeriesCollection>
                 <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
@@ -59,9 +59,9 @@
     </div>
     <div class="pies">
         <div class="pie">
-            <SfAccumulationChart Height="100%" Width="100%" Title="ORDERS BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
+            <SfAccumulationChart Height="100%" Width="100%" Title="SALES BY COUNTRIES" EnableBorderOnMouseMove="true" EnableAnimation="true" EnableCanvas="true">
                 <AccumulationChartSeriesCollection>
-                    <AccumulationChartSeries DataSource="@OrdersByCountries" XName="CountryName" YName="OrdersCount" Name="Orders" Explode="true">
+                    <AccumulationChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" Name="CountrySum" Explode="true">
                     </AccumulationChartSeries>
                 </AccumulationChartSeriesCollection>
                 <AccumulationChartLegendSettings Position="LegendPosition.Bottom">
@@ -177,22 +177,22 @@
     #region
     SfAccumulationChart pie = new SfAccumulationChart();
 
-    public List<OrdersByCountry> OrdersByCountries = new List<OrdersByCountry>();
-    public List<SalesByCountry> SalesByCountries = new List<SalesByCountry>();
+    public List<OrdersByCountry> OrdersByCountries = new ();
+    public List<SalesByCategory> SalesByCategories = new ();
+    public List<SalesByCountry> SalesByCountries = new ();
 
     protected override async Task OnInitializedAsync()
     {
 #if DEBUG
-        //await Task.Delay(6000);
+        await Task.Delay(6000);
 #endif
 
-        var ordersByCountriesResponce = await statisticService.GetOrdersByCountriesAsync();
+        OrdersByCountries = (await statisticService.GetOrdersByCountriesAsync()).Data;
 
-        OrdersByCountries = ordersByCountriesResponce.Data;
+        SalesByCategories = (await statisticService.GetSalesByCategoriesAsync()).Data;
 
-        var salesByCountries = await statisticService.GetSalesByCountriesAsync();
-        SalesByCountries = salesByCountries.Data;
+        SalesByCountries = (await statisticService.GetSalesByCountryAsync()).Data;
+
     }
     #endregion
-
 }
