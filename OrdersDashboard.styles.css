@@ -1,4 +1,9 @@
 /* /Shared/MainLayout.razor.rz.scp.css */
+/**{
+    padding:0!important;
+    margin:!important;
+}
+*/
 .page[b-3ca0zrd7mq] {
     position: relative;
     display: flex;

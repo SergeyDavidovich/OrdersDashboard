@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-SO\/fuIIWUxoIu1OABrOpK5n\/AvzxJcg+0H3PT1eutAE=",
+      "hash": "sha256-cH8vRtzR5VklXXIk+FsF0Pu6iI5qi4rT7VJBJOoxXzk=",
       "url": "css\/app.css"
     },
     {
@@ -117,7 +117,7 @@
       "url": "_framework\/dotnet.5.0.10.js"
     },
     {
-      "hash": "sha256-\/slE4l3OAsmNqzPDGzv9+R+lQsMUBX5WlSOzZObj+iY=",
+      "hash": "sha256-4AM4CW1ai5v+SPynTt2Nshk1B3LOxWlcrleZnDE1Pp0=",
       "url": "OrdersDashboard.styles.css"
     },
     {
@@ -589,7 +589,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-Nb729vs1yfHvSZ+PE30cI9XFREHl5egejCpHpnugXFk=",
+      "hash": "sha256-HDYNMapr+zDQEltlR4nivZWlj0dUQghlKV\/\/Ej6Tmk4=",
       "url": "_framework\/OrdersDashboard.dll"
     },
     {
@@ -761,7 +761,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-\/obfRDJSMQW3o2Yr33Agl4LvjBMnlsV8fkMLRg5YUvE=",
+      "hash": "sha256-p80z92IwOP+Ei4WMpm6MAt3NIdHA13RAxCRt2bIhx9w=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -769,5 +769,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "t4nqN7V\/"
+  "version": "094h6Qwh"
 };
