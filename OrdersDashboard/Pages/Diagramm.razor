@@ -69,6 +69,37 @@
             </SfAccumulationChart>
         </div>
     </div>
+    <div class="bars">
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7"
+                                     Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+            <div class="item bar">
+                <SfChart Height="100%">
+                    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                    <ChartSeriesCollection>
+                        <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7" Type="ChartSeriesType.Bar">
+                        </ChartSeries>
+                    </ChartSeriesCollection>
+                </SfChart>
+            </div>
+        </div>
+
 </div>
 
 <style>
