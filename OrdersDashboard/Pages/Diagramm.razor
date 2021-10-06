@@ -72,7 +72,7 @@
     <div class="bars">
         @*<div class="item bar">
             <SfChart Height="100%">
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double"></ChartPrimaryXAxis>
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
                 <ChartSeriesCollection>
                     <ChartSeries DataSource="@SalesByCountries" XName="CountryName" YName="CountrySum" ColumnSpacing="0.2" ColumnWidth="0.7"
                                  Type="ChartSeriesType.Bar">
@@ -106,6 +106,7 @@
     .pies {
         display: flex;
         flex-direction: column;
+        justify-content:center;
     }
 
     .pie {
@@ -113,6 +114,7 @@
         border: 1px solid #b9b8b8;
         color: black;
         padding: 0px;
+        background-color:black;
     }
 
     .cards {
@@ -212,6 +214,7 @@
     public List<SalesByCountry> SalesByCountries = new();
 
     protected override async Task OnInitializedAsync()
+
     {
 #if DEBUG
         await Task.Delay(6000);
@@ -221,6 +224,7 @@
         SalesByCategories = (await statisticService.GetSalesByCategoriesAsync()).Data;
 
         SalesByCountries = (await statisticService.GetSalesByCountryAsync()).Data;
+
     }
     #endregion
 }
