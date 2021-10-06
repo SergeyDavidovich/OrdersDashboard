@@ -69,7 +69,7 @@
             </SfAccumulationChart>
         </div>
     </div>
-    <div class="bars">
+    @*<div class="bars">
             <div class="item bar">
                 <SfChart Height="100%">
                     <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
@@ -98,17 +98,10 @@
                     </ChartSeriesCollection>
                 </SfChart>
             </div>
-        </div>
-
+        </div>*@
 </div>
 
 <style>
-/*    .wrapper {
-        padding: 0px;
-        margin: 6px;
-    }
-*/
-
 
     .pies {
         display: flex;
@@ -193,6 +186,7 @@
     }
     /*Конец - Внутренние классы компонента SfCard*/
 
+    /**/ 
     e-chart {
         width: inherit !important;
         height: inherit !important;
@@ -202,6 +196,9 @@
         width: inherit !important;
         height: inherit !important;
     }
+    
+    /**/ 
+
 </style>
 
 @code {
@@ -217,13 +214,11 @@
 #if DEBUG
         await Task.Delay(6000);
 #endif
-
         OrdersByCountries = (await statisticService.GetOrdersByCountriesAsync()).Data;
 
         SalesByCategories = (await statisticService.GetSalesByCategoriesAsync()).Data;
 
         SalesByCountries = (await statisticService.GetSalesByCountryAsync()).Data;
-
     }
     #endregion
 }
